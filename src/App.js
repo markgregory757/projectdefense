@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from "react";
 
 function App() {
+
+const [ people, setPeople ] = useState(null);
+
+const fetchData = async () => {
+  const response = await fetch("mongodb+srv://Bloggers:Bloggers@cluster0.hfjai.mongodb.net/?retryWrites=true&w=majority")
+    .then(response => response.json())
+}
+
+console.log("fetchData", fetchData())
+
+console.log("people", people)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Gun Range App</h1>
+      {!people && <p>Please fetch people</p>}
+      <p> Name: {people && people.name}</p>
+      <ul>
+        {people && people.image.map((image) => {
+          <li>
+            <a href={image}>{image}</a>
+          </li>
+        })}
+      </ul>
+      
     </div>
   );
 }
