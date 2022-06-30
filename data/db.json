@@ -1,0 +1,34 @@
+{
+  "blogs": [
+    {
+      "title": "Discovering a new hobby",
+      "body": "lorem ipsum...",
+      "author": "mark",
+      "id": 1
+    },
+    {
+      "title": "Safety is rule #1",
+      "body": "lorem ipsum...",
+      "author": "taskmaster",
+      "id": 2
+    },
+    {
+      "title": "Leading your target",
+      "body": "lorem ipsum...",
+      "author": "marksman",
+      "id": 3
+    },
+    {
+      "title": "Leading your target 22",
+      "body": "lorem ipsum...",
+      "author": "marksman 2",
+      "id": 4
+    },
+    {
+      "title": "Leading your target 33",
+      "body": "lorem ipsum...",
+      "author": "marksman 3",
+      "id": 5
+    }
+  ]
+}
