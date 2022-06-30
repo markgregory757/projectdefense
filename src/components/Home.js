@@ -1,24 +1,33 @@
-
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import BlogList from "./BlogList";
 
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        { title: 'Discovering a new hobby', body: 'lorem ipsum...', author: 'mario', id: 1 },
-        { title: 'Safety is rule #1', body: 'lorem ipsum...', author: 'taskmaster', id: 2 },
-        { title: 'Leading your target', body: 'lorem ipsum...', author: 'marksman', id: 3 }
-    ]);
+  const [blogs, setBlogs] = useState(null);
 
-    return ( 
-        <div className="home">
-            {blogs.map((blog) => (
-                <div className="blog-preview" key={blog.id}>
-                    <h2>{ blog.title }</h2>
-                    <p>Written by { blog.author }</p>
-                </div>
-            ))}
-        </div>
-     );
-}
- 
+  const [isPending, setIsPending] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetch("http://localhost:8000/blogs")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setBlogs(data);
+          setIsPending(false);
+        });
+    }, 1000);
+  }, []);
+
+  return (
+    <div className="home">
+      {isPending && <div>Loading...</div>}
+      {blogs && <BlogList blogs={blogs} title="All Blogs..." />}
+      {/* <button onClick={() => setName('Gomez')} >change name</button> */}
+      {/* <p style={{color:"orangered", size:"10px"}}>{ name }</p> */}
+      {/* {blogs && <BlogList blogs={blogs.filter((blog) => blog.author === 'mark')} title="mark's blogs" />} */}
+    </div>
+  );
+};
+
 export default Home;
